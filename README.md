@@ -1,6 +1,6 @@
 TM
 ==
 
-This will hopefully become a small project for simulating a Turing machine (TM).
+This is a small project for simulating (non-)deterministic Turing machines.
 
-Malte Kuhlmann, 15. Sept. 2014
+Malte Kuhlmann, 1. Oct. 2014
