@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/is/ei/mkuhlmann/Documents/C++/TM/src/Action.h
+
+/is/ei/mkuhlmann/Documents/C++/TM/src/TM.h
+iostream
+-
+Action.h
+/is/ei/mkuhlmann/Documents/C++/TM/src/Action.h
+Tape.h
+/is/ei/mkuhlmann/Documents/C++/TM/src/Tape.h
+
+/is/ei/mkuhlmann/Documents/C++/TM/src/Tape.h
+
+/is/ei/mkuhlmann/Documents/C++/TM/src/main.cpp
+iostream
+-
+TM.h
+/is/ei/mkuhlmann/Documents/C++/TM/src/TM.h
+Action.h
+/is/ei/mkuhlmann/Documents/C++/TM/src/Action.h
+
