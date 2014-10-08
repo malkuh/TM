@@ -23,15 +23,15 @@ public:
     Tape& operator= (const Tape & other);
     
     /** methods for manipulating the tape and print out **/
-    // read symbol currently beneath the head
-    uint read();
     // write symbol to current position
     void write(uint symbol);
     // move right (true) or left (false)
     void move(bool move);
+    // read symbol currently beneath the head
+    uint read() const;
     // prints all positions the head has been
     // marks where the head is currently
-    void print();
+    void print() const;
     
 private:
     /** auxiliary functions **/

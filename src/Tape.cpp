@@ -8,7 +8,9 @@ Tape::Tape()
     left_expansion = 8;
     start = 8;
     end = 8;
-    content = new uint[16];
+    content = new uint[16]();
+//     for(int i = 0; i < 16; i++)
+//         content[i] = 0;
 }
 
 // destructor
@@ -49,7 +51,7 @@ Tape& Tape::operator= (const Tape & other)
     return *this;
 }
 
-uint Tape::read()
+uint Tape::read() const
 {
     return content[pos];
 }
@@ -87,7 +89,7 @@ void Tape::move(bool move)
         start = pos;
 }
 
-void Tape::print()
+void Tape::print() const
 {
     for(int i = start; i <= end; i++)
     {
@@ -103,13 +105,9 @@ void Tape::print()
 void Tape::expand_right()
 {
     uint new_size = size + right_expansion;
-    uint* new_content = new uint[new_size];
-    for(int i = 0; i < new_size; i++) {
-        if (start <= i && i <= end)
-            new_content[i] = content[i];
-        else
-            new_content[i] = 0;
-    }
+    uint* new_content = new uint[new_size]();
+    for(int i = start; i <= end; i++)
+        new_content[i] = content[i];
     delete[] content;
     content = new_content;
     size = new_size;
@@ -119,13 +117,9 @@ void Tape::expand_right()
 void Tape::expand_left()
 {
     uint new_size = size + left_expansion;
-    uint* new_content = new uint[new_size];
-    for (int i = 0; i < new_size; i++) {
-        if (start+left_expansion <= i && i <= end+left_expansion)
-            new_content[i] = content[i-left_expansion];
-        else
-            new_content[i] = 0;
-    }
+    uint* new_content = new uint[new_size]();
+    for (int i = start+left_expansion; i <= end+left_expansion; i++)
+        new_content[i] = content[i-left_expansion];
     delete[] content;
     content = new_content;
     size = new_size;

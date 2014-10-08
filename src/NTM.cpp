@@ -20,25 +20,27 @@ NTM::NTM(uint arg_nr_states,
 // simulate NTM until it halts or nr_steps steps are reached
 void NTM::simulate(uint max_nr_steps, bool verbose)
 {
+    uint c_symbol;
+    uint c_state;
     while(nr_steps <= max_nr_steps) {
         list<TM_State> new_tm_states;
         if ( verbose ) {
             cout << "Nr steps: " << nr_steps << endl;
             cout << "There are " << tm_states.size() << " states" << endl;
         }
-        for (list<TM_State>::iterator it=tm_states.begin();
+        for (list<TM_State>::const_iterator it = tm_states.begin();
              it != tm_states.end(); ++it) {
-            uint c_symbol = (*it).tape.read();
-            uint c_state = (*it).state;
+            c_symbol = it->tape.read();
+            c_state = it->state;
             if ( !is_final_state(c_state) ) {
-                for(list<Action>::iterator act_it =
+                for(list<Action>::const_iterator act_it =
                     trans_actions[c_state][c_symbol].begin();
                     act_it != trans_actions[c_state][c_symbol].end();
                     ++act_it) {
-                    TM_State tms = (*it);
-                    tms.state = (*act_it).state;
-                    tms.tape.write((*act_it).symbol);
-                    tms.tape.move((*act_it).move);
+                    TM_State tms(*it);
+                    tms.state = act_it->state;
+                    tms.tape.write(act_it->symbol);
+                    tms.tape.move(act_it->move);
                     new_tm_states.push_front(tms);
 //                     if(verbose) {
 //                         print(tms);
@@ -47,22 +49,22 @@ void NTM::simulate(uint max_nr_steps, bool verbose)
             }
         }
         nr_steps++;
-        tm_states = new_tm_states;
+        swap(tm_states, new_tm_states);
     }
     cout << "Done simulating!" << endl;
 }
 
-uint NTM::get_steps()
+uint NTM::get_steps() const
 {
     return nr_steps;
 }
 
-uint NTM::get_nr_states()
+uint NTM::get_nr_states() const
 {
     return tm_states.size();
 }
 
-bool NTM::is_final_state(uint state)
+bool NTM::is_final_state(uint state) const
 {
     if (state >= nr_states - nr_final_states)
         return true;
@@ -86,17 +88,17 @@ void NTM::set_input(uint* input, uint sz_input)
 }
 
 // print current state and tape
-void NTM::print()
+void NTM::print() const
 {
     cout << "Number of states: " << tm_states.size() << endl;
-    for (list<TM_State>::iterator it=tm_states.begin();
+    for (list<TM_State>::const_iterator it = tm_states.begin();
          it != tm_states.end(); ++it) {
         print(*it);
     }
 }
 
 // prints single TM state
-void NTM::print(TM_State tms)
+void NTM::print(const TM_State &tms) const
 {
     cout << "State: " << tms.state << endl;
     tms.tape.print();

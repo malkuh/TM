@@ -28,17 +28,17 @@ public:
     
     void one_step();
     
-    uint get_steps(); 
+    uint get_steps() const; 
     
     // set input on the band
     void set_input(uint* input, uint sz_input);
     
     // print current state and tape
-    void print();
+    void print() const;
 
 private:
     
-    bool is_final_state(uint state);
+    bool is_final_state(uint state) const;
     // the set of states Q contains wlog the numbers 0 to nr_states-1
     // 0 is the starting state
     uint nr_states;

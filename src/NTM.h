@@ -25,19 +25,19 @@ public:
     void simulate(uint max_nr_steps, bool verbose = false);
     
     // auxiliary functions
-    uint get_steps(); 
-    uint get_nr_states();
+    uint get_steps() const;
+    uint get_nr_states() const;
     
     // set input on the band
     void set_input(uint* input, uint sz_input);
     
     // print current state and tape
-    void print();
-    void print(TM_State tms);
+    void print() const;
+    void print(const TM_State &tms) const;
 
 private:
     
-    bool is_final_state(uint state);
+    bool is_final_state(uint state) const;
     // the set of states Q contains wlog the numbers 0 to nr_states-1
     // 0 is the starting state
     uint nr_states;

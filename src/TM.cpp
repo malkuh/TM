@@ -37,15 +37,14 @@ void TM::simulate(uint max_nr_steps, bool verbose)
 // simulate one step of the Turing machine
 void TM::one_step()
 {
-    uint c_symbol = tape.read();
-    Action c_action = trans_actions[c_state][c_symbol];
+    Action c_action = trans_actions[c_state][tape.read()];
     c_state = c_action.state;
     tape.write(c_action.symbol);
     tape.move(c_action.move);
     nr_steps++;
 }
 
-bool TM::is_final_state(uint state)
+bool TM::is_final_state(uint state) const
 {
     if (state >= nr_states - nr_final_states)
         return true;
@@ -53,7 +52,7 @@ bool TM::is_final_state(uint state)
         return false;
 }
 
-uint TM::get_steps()
+uint TM::get_steps() const
 {
     return nr_steps;
 }
@@ -71,7 +70,7 @@ void TM::set_input(uint* input, uint sz_input)
 }
 
 // print current state and tape
-void TM::print()
+void TM::print() const
 {
     cout << "State: " << c_state << endl;
     tape.print();

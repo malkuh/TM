@@ -1,1 +1,0 @@
-/usr/bin/c++       CMakeFiles/TMsimulation.dir/src/main.cpp.o CMakeFiles/TMsimulation.dir/src/TM.cpp.o CMakeFiles/TMsimulation.dir/src/Tape.cpp.o CMakeFiles/TMsimulation.dir/src/NTM.cpp.o  -o TMsimulation -rdynamic 

@@ -8,6 +8,8 @@ set(PROJ_SOURCES   "src/main.cpp" "src/TM.cpp" "src/Tape.cpp" "src/NTM.cpp")
 
 project(${PROJ_NAME})
 
+set(CMAKE_CXX_FLAGS "-O3 -std=gnu++11")
+
 # The version number.
 set (Tutorial_VERSION_MAJOR 1)
 set (Tutorial_VERSION_MINOR 0)
